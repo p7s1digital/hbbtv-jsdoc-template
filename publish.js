@@ -249,7 +249,17 @@ function buildNav(members) {
     }
 
     if (members.modules.length) {
+        // Don't add a module if it's already in the nav (for example because it's also in members.classes)
         _.each(members.modules, function (v) {
+            var duplicate = false;
+            _.each(nav, function (v2) {
+                // console.log("Comparing existing longname in nav: " + v2.longname);
+                if (v.longname === v2.longname){
+                    console.log("DUP!");
+                    duplicate=true;
+                }
+            });
+            if (!duplicate) {
             nav.push({
                 type: 'module',
                 longname: v.longname,
@@ -271,6 +281,7 @@ function buildNav(members) {
                     memberof: v.longname
                 })
             });
+            }
         });
     }
 
