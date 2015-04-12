@@ -253,34 +253,33 @@ function buildNav(members) {
         _.each(members.modules, function (v) {
             var duplicate = false;
             _.each(nav, function (v2) {
-                // console.log("Comparing existing longname in nav: " + v2.longname);
                 if (v.longname === v2.longname){
-                    console.log("DUP!");
                     duplicate=true;
                 }
             });
-            if (!duplicate) {
-            nav.push({
-                type: 'module',
-                longname: v.longname,
-                name: v.name,
-                members: find({
-                    kind: 'member',
-                    memberof: v.longname
-                }),
-                methods: find({
-                    kind: 'function',
-                    memberof: v.longname
-                }),
-                typedefs: find({
-                    kind: 'typedef',
-                    memberof: v.longname
-                }),
-                events: find({
-                    kind: 'event',
-                    memberof: v.longname
-                })
-            });
+            if (!duplicate) {                 
+                nav.push({
+                    type: 'module',
+                    longname: v.longname,
+                    package: v.name.substr(0,v.name.lastIndexOf("/")).replace("module:",""),
+                    name: v.name,
+                    members: find({
+                        kind: 'member',
+                        memberof: v.longname
+                    }),
+                    methods: find({
+                        kind: 'function',
+                        memberof: v.longname
+                    }),
+                    typedefs: find({
+                        kind: 'typedef',
+                        memberof: v.longname
+                    }),
+                    events: find({
+                        kind: 'event',
+                        memberof: v.longname
+                    })
+                });
             }
         });
     }
