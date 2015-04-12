@@ -14,7 +14,7 @@ var self = this;
         
     <?js } ?>
         
-    <?js if (data.mixes && mixes.length) {?>
+    <?js if (data.mixes && mixes.length && data.kind == "member") {?>
     <dt class="tag-mixes">Mixins:</dt>
     <dd class="tag-mixes">
         <ul><?js mixes.forEach(function(s) { ?>
