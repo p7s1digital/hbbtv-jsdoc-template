@@ -14,6 +14,15 @@ var self = this;
         
     <?js } ?>
         
+    <?js if (data.mixes && mixes.length) {?>
+    <dt class="tag-mixes">Mixins:</dt>
+    <dd class="tag-mixes">
+        <ul><?js mixes.forEach(function(s) { ?>
+            <li><?js= self.linkto(s) ?></li>
+        <?js }); ?></ul>
+    </dd>    
+    <?js } ?>
+
     <?js if (data.version) {?>
     <dt class="tag-version">Version:</dt>
     <dd class="tag-version"><ul class="dummy"><li><?js= version ?></li></ul></dd>
