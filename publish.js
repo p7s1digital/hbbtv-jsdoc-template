@@ -82,8 +82,8 @@ function addSignatureTypes(f) {
 function addAttribs(f) {
     var attribs = helper.getAttribs(f);
 
-    if (attribs.length) {
-        f.attribs = '<span class="type-signature ' + (attribs[0] === 'static' ? 'static' : '') + '">' + htmlsafe(attribs.length ? attribs.join(',') : '') + '</span>';
+    if (attribs.length && attribs[0] !== 'static') {
+        f.attribs = '<span class="type-signature">' + htmlsafe(attribs.length ? attribs.join(',') : '') + '</span>';
     }
 }
 
