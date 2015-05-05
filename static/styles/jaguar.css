@@ -152,6 +152,9 @@ li {
 }
 .main .subsection-title {
   margin-top: 30px;
+  background: #782486;
+  background: linear-gradient(to right, #782486, #fff);
+  color: #fff;
 }
 .main .description ul,
 .main .description ol {
