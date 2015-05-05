@@ -101,9 +101,6 @@ li {
 .main .page-title {
   display: none;
 }
-.main dd {
-  font-size: 12px;
-}
 .main h4.name span.type-signature {
   display: inline-block;
   border-radius: 3px;
@@ -169,9 +166,6 @@ li {
 .main .description pre {
   margin: 10px 0;
 }
-.main dt.tag-todo {
-  background-color: #2a6496;
-}
 .main .type-signature {
   font-size: 12px;
 }
@@ -224,15 +218,9 @@ li {
 .main .nameContainer h4 .type-signature.type a {
   color: #fff;
 }
-.main pre {
-  font-size: 11px;
-}
 .main table {
   width: 100%;
   margin-bottom: 15px;
-}
-.main table th {
-  padding: 3px 3px;
 }
 .main table td {
   vertical-align: top;
@@ -250,12 +238,6 @@ li {
   width: 80px;
   color: #aaa;
   font-size: 11px;
-}
-.main table .description {
-  font-size: 12px;
-}
-.main table .description p {
-  margin: 0;
 }
 .main table .optional {
   float: left;
