@@ -59,8 +59,7 @@ var self = this;
     <?js } ?>
     
     <?js if (data.defaultvalue) {?>
-    <dt class="tag-default">Default Value:</dt>
-    <dd class="tag-default"><ul class="dummy"><li><?js= data.defaultvalue ?></li></ul></dd>
+    <div class="description tag-default"><b>Default Value:</b> <?js= defaultvalue ?></div>
     <?js } ?>
     
     <?js if (data.tutorials && tutorials.length) {?>
