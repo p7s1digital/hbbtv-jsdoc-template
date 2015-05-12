@@ -80,7 +80,7 @@ var self = this;
     </dd>
     <?js } ?>
     
-    <?js if (data.todo && todo.length) {?>
+    <?js if (data.todo && todo.length && env.opts.private) {?>
     <dt class="tag-todo">TODO</dt>
     <dd class="tag-todo">
         <ul><?js todo.forEach(function(t) { ?>
