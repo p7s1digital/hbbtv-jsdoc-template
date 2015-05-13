@@ -2,7 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || title) ?></title>
+
+    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || title) ?> | ArcGIS API for JavaScript</title>
+
     <?js if (env.conf.templates.meta) { ?>
     <?js if (env.conf.templates.meta.description) { ?><meta name="description" content="<?js= env.conf.templates.meta.description ?>" /><?js } ?>
     <?js if (env.conf.templates.meta.keyword) { ?>
@@ -17,16 +19,28 @@
     <?js if (env.conf.templates.openGraph.site_name) { ?><meta property="og:site_name" content="<?js= env.conf.templates.openGraph.site_name ?>"/><?js } ?>
     <meta property="og:url" content="<?js= env.conf.templates.openGraph.url ?>"/>
     <?js } ?>
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <script src="scripts/jquery.min.js"></script>
+
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
-    
+
+    <!--
+    // --------------------------------------------------------------------
+    // Esri stylesheet stuff
+    // --------------------------------------------------------------------
+    -->
+    <!-- Link to favicon -->
+    <link rel="shortcut icon" href="../assets/img/favicon.ico">
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link rel="stylesheet" href="../assets/css/api-reference/default.css">
+    <!--
+    // --------------------------------------------------------------------
+    // Esri stylesheet stuff
+    // --------------------------------------------------------------------
+    -->
     <?js if (env.conf.templates) { ?>
     <script>
     var config = <?js= JSON.stringify(env.conf.templates) ?>;
@@ -48,17 +62,178 @@
     <?js } ?>
 </head>
 <body>
+
+<!-- pre esri content -->
+  <div class="drawer drawer-left js-drawer" data-drawer="top-nav">
+    <nav class="drawer-nav">
+      <aside class="side-nav">
+        <h2 class="side-nav-title padding-leader-half padding-trailer-half text-large">ArcGIS for JavaScript</h2>
+        <div class="panel padding-trailer-half padding-leader-half">
+          <label class="trailer-0">
+            <input type='search' placeholder='Search'>
+          </label>
+        </div>
+        <a class="side-nav-link " href="../">Home</a>
+        <a class="side-nav-link" href="../guide">Guide</a>
+        <a class="side-nav-link" href="../api-reference">API Reference</a>
+        <a class="side-nav-link" href="../sample-code">Sample Code</a>
+        <a class="side-nav-link" href="https://geonet.esri.com/community/developers/web-developers/arcgis-api-for-javascript">Geonet Forums</a>
+      </aside>
+    </nav>
+  </div>
+
+  <div class="wrapper">
+
+
+    <!-- Logged Out Pattern-->
+    <header class="top-nav">
+      <div class="grid-container">
+        <div class="column-24">
+          <div class="phone-hide">
+          <div class="site-brand dropdown js-dropdown">
+            <div class="js-dropdown-toggle">
+              <span class="user-name">ArcGIS for Developers</span>
+            </div>
+
+            <nav class="dropdown-menu dropdown-left">
+              <a href="http://www.arcgis.com" class="dropdown-link">ArcGIS Online</a>
+              <a href="http://desktop.arcgis.com/" class="dropdown-link">ArcGIS for Desktop</a>
+              <a href="http://server.arcgis.com/" class="dropdown-link">ArcGIS for Server</a>
+              <a href="/" class="current selected dropdown-link">ArcGIS for Developers</a>
+              <a href="http://solutions.arcgis.com/" class="dropdown-link">ArcGIS Solutions</a>
+              <a href="https://marketplace.arcgis.com/" class="dropdown-link">ArcGIS Marketplace</a>
+            </nav>
+          </div>
+          <nav class="site-nav">
+            <ul>
+             <li><a href="/features/">Features</a></li>
+             <li><a class="hide-if-logged-in" href="/plans/">Plans</a></li>
+             <li><a href="/documentation/">Documentation</a></li>
+             <li><a href="/community/">Community</a></li>
+           </ul>
+          </nav>
+
+          <div class="site-search right">
+            <form class="site-search-form" method="GET" action="/search">
+              <span class="site-search-toggle icon-search"></span>
+              <input class="left site-search-input" type="search" name="q" placeholder="Search">
+
+              <button type="submit" class="btn transparent site-search-button">Go</button>
+
+              <input type="hidden" name="do" value="developers">
+              <input type="hidden" name="start" value="0">
+              <input type="hidden" name="lg" value="en">
+              <input type="hidden" name="product" value="js-api-arcgis">
+            </form>
+          </div>
+        </div>
+        </div>
+        <div class="phone-show">
+          <a href="#" class="top-nav-title js-drawer-toggle" data-drawer="top-nav">☰ ArcGIS API for JavaScript</a>
+        </div>
+
+      </div>
+    </header>
+    <header class="sub-nav">
+      <div class="grid-container phone-hide">
+        <h1 class="sub-nav-title"><a href="../" class="link-white">ArcGIS API for JavaScript</a></h1>
+        <nav class="sub-nav-list leader-0">
+          <a class="sub-nav-link" href="../">Home</a>
+          <a class="sub-nav-link" href="../guide">Guide</a>
+          <a class="sub-nav-link is-active" href="../api-reference">API Reference</a>
+          <a class="sub-nav-link" href="../sample-code">Sample Code</a>
+          <a class="sub-nav-link" href="https://geonet.esri.com/community/developers/web-developers/arcgis-api-for-javascript">Geonet Forum</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- content of each page will go here -->
+    <div class="grid-container leader-1">
+
+    <main class="column-24 pre-1 content-face">
+<!-- pre esri content -->
+
+
+<!-- jaguar stuff -->
 <div id="wrap" class="clearfix">
     <?js= this.partial('navigation.tmpl', this) ?>
     <div class="main">
         <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
         <?js= content ?>
-
-        <footer>Documentation generated on <?js= (new Date()) ?></footer>
     </div>
 </div>
+<!-- jaguar stuff -->
+
+<!-- post esri content -->
+
+    </main>
+
+    </div>
+  </div>
+
+
+  <!-- Footer Pattern -->
+    <footer class="footer leader-3">
+      <div class="grid-container">
+          <nav class="column-6">
+            <h6>Arc<span>GIS</span></h6>
+            <ul class="list-bulleted">
+              <li><a href="http://www.arcgis.com/about/">Home</a></li>
+              <li><a href="http://www.arcgis.com/about/features.html">Features</a></li>
+              <li><a href="http://www.arcgis.com/about/pricing.html">Pricing</a></li>
+            </ul>
+          </nav>
+
+          <nav class="column-6">
+            <h6>Arc<span>GIS</span> for Developers</h6>
+            <ul>
+              <li><a href="/en/">Home</a></li>
+              <li><a href="/en/features/">Features</a></li>
+              <li><a href="/en/documentation/">Documentation</a></li>
+              <li><a href="http://blogs.esri.com/esri/arcgis/category/developer/">Blog</a></li>
+            </ul>
+          </nav>
+
+          <nav class="column-6">
+            <h6>About Esri</h6>
+            <ul>
+              <li><a href="http://www.esri.com/about-esri/">About Us</a></li>
+              <li><a href="http://www.esri.com/careers/">Careers</a></li>
+              <li><a href="http://blogs.esri.com/esri/esri-insider/">Insiders Blog</a></li>
+              <li><a href="http://www.esri.com/events/user-conference/index.html">User Conference</a></li>
+              <li><a href="http://www.esri.com/events/devsummit/index.html">Developer Summit</a></li>
+            </ul>
+          </nav>
+
+          <nav class="column-6 padding-leader-half">
+            <a class="esri-logo" href="http://esri.com"></a>
+            <section class="footer-social-nav">
+              <a class="icon-twitter" href="https://twitter.com/Esri/">T</a>
+              <a class="icon-facebook" href="https://www.facebook.com/esrigis/">F</a>
+              <a class="icon-github" href="http://esri.github.com/">G</a>
+              <a class="icon-email" href="http://www.esri.com/about-esri/contact/">E</a>
+            </section>
+          </nav>
+          <div class="column-24">
+            <p><small>© Copyright 2015 Environmental Systems Research Institute, Inc. | <a href="http://www.esri.com/legal/privacy">Privacy</a> | <a href="http://www.esri.com/legal/software-license">Legal</a></small></p>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+<!--
+// --------------------------------------------------------------------
+//
+// post esri content
+//
+// --------------------------------------------------------------------
+-->
+<script src="../assets/js/libs/api-reference/prettify.js"></script>
+<script src="../assets/js/libs/api-reference/lang-css.js"></script>
+<script src="../assets/js/libs/api-reference/jquery.min.js"></script>
 <script>prettyPrint();</script>
-<script src="scripts/linenumber.js"></script>
-<script src="scripts/main.js"></script>
+<script src="../assets/js/libs/api-reference/linenumber.js"></script>
+<script src="../assets/js/libs/api-reference/main.js"></script>
 </body>
 </html>
