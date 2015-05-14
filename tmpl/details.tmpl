@@ -71,8 +71,8 @@ var self = this;
     </dd>
     <?js } ?>
     
-    <?js if (data.see && see.length) {?>
-    <dt class="tag-see">See:</dt>
+    <?js if (data.see && see.length && data.kind !== 'module') {?>
+    <dt class="tag-see">See also:</dt>
     <dd class="tag-see">
         <ul><?js see.forEach(function(s) { ?>
             <li><?js= self.linkto(s) ?></li>

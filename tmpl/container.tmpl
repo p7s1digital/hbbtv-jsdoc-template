@@ -67,6 +67,14 @@
                 <div class="description tag-since"><b>Since:</b> ArcGIS API for JavaScript <?js= doc.since ?></div>
             <?js } ?>
         <?js } ?>
+        <?js if (doc.see) {?>
+            <dt class="tag-see">See also:</dt>
+            <dd class="tag-see">
+                <ul><?js doc.see.forEach(function(s) { ?>
+                    <li><?js= self.linkto(s) ?></li>
+                <?js }); ?></ul>
+            </dd>            
+        <?js } ?>
         <h3 class="subsection-title" id="constructors">Constructors</h3>
         <?js= self.partial('method.tmpl', doc.module) ?>
     <?js } ?>
