@@ -2,9 +2,23 @@
 <html>
 <head>
     <meta charset="utf-8">
-
-    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || title) ?> | ArcGIS API for JavaScript</title>
-
+	<!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="content-language" content="en">
+    <?js if (env.conf.templates.site_globals.search) { ?>
+    <meta name="product" content="<?js= env.conf.templates.site_globals.search.product ?>">
+    <meta name="subject" content="<?js= env.conf.templates.site_globals.search.subject ?>">
+    <meta name="subject_label" content="<?js= env.conf.templates.site_globals.search.subject_label ?>">
+    <meta name="sub_category" content="<?js= env.conf.templates.site_globals.search.sub_category ?>">
+    <meta name="sub_category_label" content="<?js= env.conf.templates.site_globals.search.sub_category_label ?>">
+    <meta name="content_type_label" content="API Reference">
+    <meta name="search-collection" content="<?js= env.conf.templates.site_globals.search.search_collection ?>">
+    <meta name="content_type" content="API Reference">
+    <meta name="version" content="<?js= env.conf.templates.site_globals.search.jsapi_version ?>">
+    <meta name="search-category" content="help-api,help-api-ref">
+    <meta name="last-modified" content="<?js= new Date() ?>">
+    <?js } ?>	
     <?js if (env.conf.templates.meta) { ?>
     <?js if (env.conf.templates.meta.description) { ?><meta name="description" content="<?js= env.conf.templates.meta.description ?>" /><?js } ?>
     <?js if (env.conf.templates.meta.keyword) { ?>
@@ -20,6 +34,7 @@
     <meta property="og:url" content="<?js= env.conf.templates.openGraph.url ?>"/>
     <?js } ?>
 
+    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || title) ?> | ArcGIS API for JavaScript</title>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
