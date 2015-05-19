@@ -150,22 +150,25 @@
     <!-- content of each page will go here -->
     <div class="grid-container leader-1">
 
-    <main class="column-24 pre-1 content-face">
-<!-- pre esri content -->
-
-
-<!-- jaguar stuff -->
-<div id="wrap" class="clearfix">
-    <?js= this.partial('navigation.tmpl', this) ?>
-    <div class="main">
-        <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
-        <?js= content ?>
-    </div>
-</div>
-<!-- jaguar stuff -->
-
-<!-- post esri content -->
-
+    <main class="column-24">
+		<!-- pre esri content -->
+		  <div class="api-reference-container">
+			<!-- jaguar stuff -->
+			<div id="wrap" class="clearfix">
+			    <div class="main">
+		  			<div class="navigation-container column-6">
+					    <?js= this.partial('navigation.tmpl', this) ?>
+						<div class="column-6 js-sticky scroll-show tablet-hide" data-top="46">
+				          <a href="#" class="btn btn-fill btn-clear">Back to Top</a>
+				        </div>
+		  			</div>
+			        <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
+			        <?js= content ?>
+			    </div>
+			</div>
+			<!-- jaguar stuff -->
+		  </div>
+		<!-- post esri content -->
     </main>
 
     </div>
@@ -229,6 +232,8 @@
 //
 // --------------------------------------------------------------------
 -->
+<script src="../assets/js/libs/calcite-web.js"></script>
+<script src="../assets/js/libs/all.js"></script>
 <script src="../assets/js/libs/api-reference/prettify.js"></script>
 <script src="../assets/js/libs/api-reference/lang-css.js"></script>
 <script src="../assets/js/libs/api-reference/jquery.min.js"></script>
