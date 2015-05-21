@@ -1,80 +1,223 @@
 <?js
 var self = this;
+
+/***
+   Copyright 2013 Teun Duynstee
+   
+   https://github.com/Teun/thenBy.js
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
+firstBy = (function() {
+    /* mixin for the `thenBy` property */
+    function extend(f) {
+        f.thenBy = tb;
+        return f;
+    }
+    /* adds a secondary compare function to the target function (`this` context)
+       which is applied in case the first one returns 0 (equal)
+       returns a new compare function, which has a `thenBy` method as well */
+    function tb(y) {
+        var x = this;
+        return extend(function(a, b) {
+            return x(a,b) || y(a,b);
+        });
+    }
+    return extend;
+})();
+
+/**
+ * http://stackoverflow.com/questions/1129216/sort-array-of-objects-by-property-value-in-javascript
+ * 
+ * @description 
+ * Returns a function which will sort an
+ * array of objects by the given key.
+ * 
+ * @param  {String}  key
+ * @param  {Boolean} reverse
+ * @return {Function}     
+ */
+function sortBy(key, reverse) {
+	
+  // Move smaller items towards the front
+  // or back of the array depending on if
+  // we want to sort the array in reverse
+  // order or not.
+  var moveSmaller = reverse ? 1 : -1;
+
+  // Move larger items towards the front
+  // or back of the array depending on if
+  // we want to sort the array in reverse
+  // order or not.
+  var moveLarger = reverse ? -1 : 1;
+
+  /**
+   * @param  {*} a
+   * @param  {*} b
+   * @return {Number}
+   */
+  return function(a, b) {
+    if (!a[key] || !b[key]){
+    	return 0;
+    }
+    if (a[key].toLowerCase() < b[key].toLowerCase()) {
+      return moveSmaller;
+    }
+    if (a[key].toLowerCase() > b[key].toLowerCase()) {
+      return moveLarger;
+    }
+    return 0;
+  };
+}
 ?>
-<div class="navigation">
+<div class="navigation column-6">
     <?js if (env.conf.templates.applicationName && env.conf.templates.applicationName.length > 0) { ?>
         <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
     <?js } ?>
 
-    <div class="search">
+    <div class="search column-6">
         <input id="search" type="text" class="form-control input-sm" placeholder="Search API Reference">
     </div>
-    <ul class="list">
+    <aside class="js-accordion accordion side-nav column-6">
     <?js
-    this.nav.forEach(function (item) {
-    ?>
-        <li class="item" data-name="<?js= item.longname ?>">
-            <span class="title">
-                <?js= self.linkto(item.longname, item.longname) ?>
-            </span>
-            <ul class="members itemMembers">
-            <?js
-            if (item.members.length) {
-            ?>
-            <span class="subtitle">Properties</span>
-            <?js
-                item.members.forEach(function (v) {
-            ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js
-                });
-            }
-            ?>
-            </ul>
-            <ul class="typedefs itemMembers">
-            <?js
-            if (item.typedefs.length) {
-            ?>
-            <span class="subtitle">Typedefs</span>
-            <?js
-                item.typedefs.forEach(function (v) {
-            ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js
-                });
-            }
-            ?>
-            </ul>
-            <ul class="methods itemMembers">
-            <?js
-            if (item.methods.length) {
-            ?>
-            <span class="subtitle">Methods</span>
-            <?js
+	var modifiedNav = [];
+	this.nav.forEach(function items(item) {
+		// ---------------------------
+		// This section is what figures out the folder path and esri class/module
+		// from parsed jsdoc
+		// ---------------------------
+		
+		// ---------------------------
+		// matches
+		// module:esri/foo/ and
+		// esri/foo/
+		// ---------------------------
+		var matchPackagePathRawExp = item.longname.match(/(module:\w*\/|\w*\/){1,}/m);
+		var classOrModuleName = item.longname.replace(/(module:\w*\/|\w*\/)/gm, "");
+		var matchPackagePathRaw;
+		
+		if (matchPackagePathRawExp){
+			//console.log("matchPackagePathRawExp: ",matchPackagePathRawExp);
+			matchPackagePathRaw = matchPackagePathRawExp[0];
+			//console.log("classOrModuleName: ", classOrModuleName);
+			//console.log("matchPackagePathRaw: ",matchPackagePathRaw);
+			var matchPackagePath = matchPackagePathRaw.substring(0, matchPackagePathRaw.length - 1);
+			var correctedPackagePath = matchPackagePath.replace(/module:/gm, "");
+			//console.log("correctedPackagePath: ",correctedPackagePath);
 
-                item.methods.forEach(function (v) {
-            ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js
-                });
-            }
-            ?>
-            </ul>
-            <ul class="events itemMembers">
-            <?js
-            if (item.events.length) {
-            ?>
-            <span class="subtitle">Events</span>
-            <?js
-                item.events.forEach(function (v) {
-            ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
-            <?js
-                });
-            }
-            ?>
-            </ul>
-        </li>
-    <?js }); ?>
-    </ul>
+			item["folderpath"] = correctedPackagePath;
+		}
+		else {
+			// ---------------------------
+			// This case shouldn't happen, but is likely when new JSDoc
+			// is added and it is either incomplete or just needs to be
+			// excluded in the /bin/jsdoc/conf.json file.
+			// ---------------------------
+			//console.log("item: ", item);
+			//console.log("classOrModuleName: ", classOrModuleName);
+			//console.log("matchPackagePathRawExp: ",matchPackagePathRawExp);
+			item["folderpath"] = "global";
+		}
+		
+		item["classormodulename"] = classOrModuleName;
+		modifiedNav.push(item);
+
+	});
+
+	modifiedNav.sort(firstBy(sortBy("folderpath")).thenBy(sortBy("classormodulename")));
+	var folderNodeDict = {};
+	var lastFolder = "";
+    modifiedNav.forEach(function (item) {
+		var folder = item.folderpath;
+		if(lastFolder === ""){
+			lastFolder = folder;
+		}
+    ?>
+		<?js if(folder !== lastFolder){ ?>
+			</div>
+		<?js }?>
+		<?js
+			if(!folderNodeDict.hasOwnProperty(folder)){ 
+				folderNodeDict[folder] = "added";
+			?>
+			<div class="accordion-section item" data-folderpath="<?js= folder ?>">
+				<h4 class="accordion-title"><?js= folder ?></h4>
+		<?js }?>
+	        <nav class="accordion-content" data-name="<?js= item.longname ?>">
+                <?js= self.linkto(item.longname, item.classormodulename, "side-nav-link") ?>
+				
+	            <ul class="members itemMembers">
+	            <?js
+	            if (item.members.length) {
+	            ?>
+	            <span class="subtitle">Properties</span>
+	            <?js
+	                item.members.forEach(function (v) {
+	            ?>
+	                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+	            <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+	            <ul class="typedefs itemMembers">
+	            <?js
+	            if (item.typedefs.length) {
+	            ?>
+	            <span class="subtitle">Typedefs</span>
+	            <?js
+	                item.typedefs.forEach(function (v) {
+	            ?>
+	                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+	            <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+	            <ul class="methods itemMembers">
+	            <?js
+	            if (item.methods.length) {
+	            ?>
+	            <span class="subtitle">Methods</span>
+	            <?js
+
+	                item.methods.forEach(function (v) {
+	            ?>
+	                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+	            <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+	            <ul class="events itemMembers">
+	            <?js
+	            if (item.events.length) {
+	            ?>
+	            <span class="subtitle">Events</span>
+	            <?js
+	                item.events.forEach(function (v) {
+	            ?>
+	                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+	            <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+			</nav>
+		<?js lastFolder = folder?>
+		
+    <?js }); 
+	?>
+    </aside>
+	
 </div>
