@@ -165,18 +165,20 @@
     <!-- content of each page will go here -->
     <div class="grid-container leader-1">
 
-    <main class="column-24">
 		<!-- pre esri content -->
 		  <div class="api-reference-container">
 			<!-- jaguar stuff -->
 			<div id="wrap" class="clearfix">
 			    <div class="main">
-		  			<div class="navigation-container column-6">
+		  			<div class="navigation-container column-6 tablet-hide">
 					    <?js= this.partial('navigation.tmpl', this) ?>
-						<div class="column-6 js-sticky scroll-show tablet-hide" data-top="46">
-				          <a href="#" class="btn btn-fill btn-clear">Back to Top</a>
-				        </div>
+		  <!--
+	<div class="column-6 js-sticky scroll-show tablet-hide" data-bottom="146">
+      <a href="#" class="btn btn-fill btn-clear">Back to Top</a>
+    </div>
+		  -->
 		  			</div>
+						
 			        <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
 			        <?js= content ?>
 			    </div>
@@ -184,7 +186,6 @@
 			<!-- jaguar stuff -->
 		  </div>
 		<!-- post esri content -->
-    </main>
 
     </div>
   </div>
