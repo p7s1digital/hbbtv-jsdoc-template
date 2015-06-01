@@ -70,10 +70,10 @@ function sortBy(key, reverse) {
     if (!a[key] || !b[key]){
     	return 0;
     }
-    if (a[key].toLowerCase() < b[key].toLowerCase()) {
+    if (a[key] < b[key]) {
       return moveSmaller;
     }
-    if (a[key].toLowerCase() > b[key].toLowerCase()) {
+    if (a[key] > b[key]) {
       return moveLarger;
     }
     return 0;
