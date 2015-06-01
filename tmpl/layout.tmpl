@@ -9,31 +9,31 @@
 function esriModuleClassDisplay(titleOrPageBanner, value){
 	
 	if(titleOrPageBanner.toLowerCase() == "title") {
-	  /**
-		* Regular expression to replace
-		* Module: esri/foo/bar/ModuleName with
-		* ModuleName
-		*
-		* Class: esri/foo/bar/ClassName with
-		* ClassName
-		* 
-		* Regular Expression used below:
-		* ([Cc]lass|[Mm]odule):\s*(\w*/){1,}
-	  */
+	  //
+		// Regular expression to replace
+		// Module: esri/foo/bar/ModuleName with
+		// ModuleName
+		//
+		// Class: esri/foo/bar/ClassName with
+		// ClassName
+		// 
+		// Regular Expression used below:
+		// ([Cc]lass|[Mm]odule):\s*(\w*/){1,}
+	  //
 	  return value.replace(/([Cc]lass|[Mm]odule):\s*(\w*\/){1,}/gm, "");
 	}
 	else if (titleOrPageBanner.toLowerCase() == "pagebanner") {
-	  /**
-		* Regular expression to replace
-		* Module: esri/foo/bar/ModuleName with
-		* Module: ModuleName
-		*
-		* Class: esri/foo/bar/ClassName with
-		* Class: ClassName
-		* 
-		* Regular Expression used below:
-		* (\w*/){1,}
-	  */
+	  //
+		// Regular expression to replace
+		// Module: esri/foo/bar/ModuleName with
+		// Module: ModuleName
+		//
+		// Class: esri/foo/bar/ClassName with
+		// Class: ClassName
+		// 
+		// Regular Expression used below:
+		// (\w*/){1,}
+	  //
 		return value.replace(/(\w*\/){1,}/gm, "");
 	}
 	else {
