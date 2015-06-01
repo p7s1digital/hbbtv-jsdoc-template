@@ -1,3 +1,46 @@
+<?js
+/***
+	This function converts the full path and class/module
+	name into the appropriate display text for either the
+	html title (FooClass or FooModule) for a given API Reference page 
+	or the page banner title which says either "Class: FooClass" or 
+	"Module: FooModule"
+*/
+function esriModuleClassDisplay(titleOrPageBanner, value){
+	
+	if(titleOrPageBanner.toLowerCase() == "title") {
+	  /**
+		* Regular expression to replace
+		* Module: esri/foo/bar/ModuleName with
+		* ModuleName
+		*
+		* Class: esri/foo/bar/ClassName with
+		* ClassName
+		* 
+		* Regular Expression used below:
+		* ([Cc]lass|[Mm]odule):\s*(\w*/){1,}
+	  */
+	  return value.replace(/([Cc]lass|[Mm]odule):\s*(\w*\/){1,}/gm, "");
+	}
+	else if (titleOrPageBanner.toLowerCase() == "pagebanner") {
+	  /**
+		* Regular expression to replace
+		* Module: esri/foo/bar/ModuleName with
+		* Module: ModuleName
+		*
+		* Class: esri/foo/bar/ClassName with
+		* Class: ClassName
+		* 
+		* Regular Expression used below:
+		* (\w*/){1,}
+	  */
+		return value.replace(/(\w*\/){1,}/gm, "");
+	}
+	else {
+		return value;
+	}
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +77,7 @@
     <meta property="og:url" content="<?js= env.conf.templates.openGraph.url ?>"/>
     <?js } ?>
 
-    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || title) ?> | ArcGIS API for JavaScript</title>
+    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || esriModuleClassDisplay("title", title)) ?> | API Reference | ArcGIS API for JavaScript</title>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -179,7 +222,7 @@
 		  -->
 		  			</div>
 						
-			        <h1 class="page-title" data-filename="<?js= filename ?>"><?js= title ?></h1>
+					<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= esriModuleClassDisplay("pageBanner", title) ?></h1>
 			        <?js= content ?>
 			    </div>
 			</div>
