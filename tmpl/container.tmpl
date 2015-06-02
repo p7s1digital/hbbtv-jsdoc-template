@@ -23,7 +23,7 @@
     <?js if (doc.longname) { ?>
         <!-- TODO: only for modules -->
         <!-- TODO: use custom tag @amdalias for exceptions -->
-        <code>require("<?js= doc.longname ?>"], function(<?js= doc.longname.split("/").pop() ?>){ /* code goes here */ });</code>
+        <code>require("<?js= doc.longname ?>"], function(<?js= doc.longname.split("/").pop() ?>) { /* code goes here */ });</code>
     <?js } ?>
     <?js if (doc.classdesc) { ?>
         <div class="class-description"><?js= doc.classdesc ?></div>
