@@ -1,6 +1,6 @@
 {
   "name": "jaguarjs-esri",
-  "version": "0.0.1-esri.9",
+  "version": "0.0.1-esri.10",
   "description": "Jaguar.js template for JSDoc 3",
   "main": "Gruntfile.js",
   "dependencies": {

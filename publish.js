@@ -175,7 +175,10 @@ function attachModuleSymbols(doclets, modules) {
     return modules.map(function(module) {
         if (symbols[module.longname]) {
             module.module = symbols[module.longname];
-            module.module.name = module.module.name.replace('module:', 'require("') + '")';
+            // make constructors show up like "new Foo(properties?)"
+            if (module.module.name.indexOf("module:") > -1){
+                module.module.name = module.module.name.substr(module.module.name.lastIndexOf("/")+1);
+            }
         }
     });
 }
