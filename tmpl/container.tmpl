@@ -28,15 +28,20 @@
     <?js if (doc.classdesc) { ?>
         <div class="class-description"><?js= doc.classdesc ?></div>
     <?js } ?>
+    <?js
+        var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+        var typedefs = self.find({kind: 'typedef', memberof: title === 'Global' ? {isUndefined: true} : doc.longname}); 
+        var events = self.find({kind: 'event', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});             
+        sectionAdded=false;
+    ?>
     <div style="position:absolute;right:10px;top:10px;">
         <?js
-            var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
-            var typedefs = self.find({kind: 'typedef', memberof: title === 'Global' ? {isUndefined: true} : doc.longname}); 
-            var events = self.find({kind: 'event', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});             
-            sectionAdded=true;
+            if (doc.kind === 'module' && doc.module) { 
+                sectionAdded=true;
         ?>
             <a href="#constructors">Constructors</a>
+        <?js } ?>            
         <?js
             if (methods && methods.length && methods.forEach) { 
         ?>
