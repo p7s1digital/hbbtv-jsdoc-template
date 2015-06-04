@@ -181,8 +181,25 @@ var self = this;
     </div>
 		  -->
 		  			</div>
-						
-					<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= esriModuleClassDisplay("pageBanner", title) ?></h1>
+					<?js
+					  // --------------------------------------------------------------------
+			      // Interrogate the jsdoc to find out if the kind is a class, function,
+			      // or module. Adjust the title accordingly.
+						//
+						// see templateHelper.js found in the esrijs-sdk branch of the jsdoc repo
+						// for implementation details of parseEsriAPIString
+			      // --------------------------------------------------------------------
+					?>
+					<?js if(filename === "index.html") { ?>
+						<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "API Reference Overview" ?></h1>
+					<?js } else if(docs[0].module && docs[0].module.kind === "class") { ?>
+							<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "Class: " + self.parseEsriAPIString("name", title) ?></h1>
+					<?js } else if(docs[0].module && docs[0].module.kind === "function") { ?>
+						<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "Function: " + self.parseEsriAPIString("name", title) ?></h1>
+					<?js } else { ?>
+						<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "Object: " + self.parseEsriAPIString("name", title) ?></h1>
+					<?js } ?>
+
 			        <?js= content ?>
 			    </div>
 			</div>
