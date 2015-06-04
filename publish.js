@@ -369,6 +369,9 @@ exports.publish = function(taffyData, opts, tutorials) {
     fs.mkPath(outdir);
 
     // copy the template's static files to outdir
+		// don't copy the static resources (fonts, CSS, and JavaScript) from the original
+		// jaguar js template
+		/*
     var fromDir = path.join(templatePath, 'static');
     var staticFiles = fs.ls(fromDir, 3);
 
@@ -377,6 +380,7 @@ exports.publish = function(taffyData, opts, tutorials) {
         fs.mkPath(toDir);
         fs.copyFileSync(fileName, toDir);
     });
+		*/
 
     // copy user-specified static files to outdir
     var staticFilePaths;
