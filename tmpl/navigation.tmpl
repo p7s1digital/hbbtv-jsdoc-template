@@ -97,39 +97,8 @@ function sortBy(key, reverse) {
 		// from parsed jsdoc
 		// ---------------------------
 		
-		// ---------------------------
-		// matches
-		// module:esri/foo/ and
-		// esri/foo/
-		// ---------------------------
-		var matchPackagePathRawExp = item.longname.match(/(module:\w*\/|\w*\/){1,}/m);
-		var classOrModuleName = item.longname.replace(/(module:\w*\/|\w*\/)/gm, "");
-		var matchPackagePathRaw;
-		
-		if (matchPackagePathRawExp){
-			//console.log("matchPackagePathRawExp: ",matchPackagePathRawExp);
-			matchPackagePathRaw = matchPackagePathRawExp[0];
-			//console.log("classOrModuleName: ", classOrModuleName);
-			//console.log("matchPackagePathRaw: ",matchPackagePathRaw);
-			var matchPackagePath = matchPackagePathRaw.substring(0, matchPackagePathRaw.length - 1);
-			var correctedPackagePath = matchPackagePath.replace(/module:/gm, "");
-			//console.log("correctedPackagePath: ",correctedPackagePath);
-
-			item["folderpath"] = correctedPackagePath;
-		}
-		else {
-			// ---------------------------
-			// This case shouldn't happen, but is likely when new JSDoc
-			// is added and it is either incomplete or just needs to be
-			// excluded in the /bin/jsdoc/conf.json file.
-			// ---------------------------
-			//console.log("item: ", item);
-			//console.log("classOrModuleName: ", classOrModuleName);
-			//console.log("matchPackagePathRawExp: ",matchPackagePathRawExp);
-			item["folderpath"] = "global";
-		}
-		
-		item["classormodulename"] = classOrModuleName;
+		item["folderpath"] = self.parseEsriAPIString("path", item.longname);
+		item["classormodulename"] = self.parseEsriAPIString("name", item.longname);
 		modifiedNav.push(item);
 
 	});

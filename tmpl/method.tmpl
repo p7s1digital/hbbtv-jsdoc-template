@@ -8,7 +8,10 @@ var self = this;
             <?js if (data.inherited || data.inherits) { ?>
                 <span class="inherited"><?js= this.linkto(data.inherits, 'inherited') ?></span>
             <?js } ?>
-            <?js= data.attribs + (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? longname : name) + (kind !== 'event' ? data.signature : '') ?>
+						<?js// --------------------------------------------------------------------
+					      // Use function to strip Esri module path found in templateHelper.js
+					      // --------------------------------------------------------------------?>
+            <?js= data.attribs + (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? self.parseEsriAPIString("name", longname) : name) + (kind !== 'event' ? data.signature : '') ?>
         </h4>
     </div>
 

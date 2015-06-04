@@ -13,8 +13,11 @@ var template = require('jsdoc/template'),
     hasOwnProp = Object.prototype.hasOwnProperty,
     data,
     view,
-    outdir = env.opts.destination;
-
+    outdir = env.opts.destination,
+		// see templateHelper.js found in the esrijs-sdk branch of the jsdoc repo
+		// for implementation details
+    parseEsriAPIString = helper.parseEsriAPIString;
+		 		
 function find(spec) {
     return helper.find(data, spec);
 }
@@ -312,6 +315,24 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     var globalUrl = helper.getUniqueFilename('global');
     helper.registerLink('global', globalUrl);
+		
+		// --------------------------------------------------------------------
+		// These registered links are added to the linkMap in templateHelper.js
+		// which is used in the function stringifyType to allow the catharsis
+		// node module translate jsdoc template syntax to html anchor tags
+		// with the appropriate urls.
+		// --------------------------------------------------------------------
+		helper.registerLink('HTMLSpanElement', 'https://developer.mozilla.org/en-US/docs/Web/API/HTMLSpanElement');
+		helper.registerLink('ProgressEvent', 'https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent');
+		helper.registerLink('XMLHttpRequest', 'https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest');
+		helper.registerLink('Promise', 'http://dojotoolkit.org/reference-guide/1.10/dojo/promise/Promise.html#dojo-promise-promise');
+		helper.registerLink('Boolean', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean');
+		helper.registerLink('Function', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function');
+		helper.registerLink('Date', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date');
+		helper.registerLink('Error', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error');
+		helper.registerLink('String', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String');
+    helper.registerLink('Number', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number');
+    helper.registerLink('Object', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object');
 
     // set up templating
     view.layout = 'layout.tmpl';
@@ -461,6 +482,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     // add template helpers
     view.find = find;
     view.linkto = linkto;
+		view.parseEsriAPIString = parseEsriAPIString;
     view.resolveAuthorLinks = resolveAuthorLinks;
     view.tutoriallink = tutoriallink;
     view.htmlsafe = htmlsafe;
