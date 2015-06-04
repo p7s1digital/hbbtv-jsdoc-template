@@ -13,8 +13,11 @@ var template = require('jsdoc/template'),
     hasOwnProp = Object.prototype.hasOwnProperty,
     data,
     view,
-    outdir = env.opts.destination;
-
+    outdir = env.opts.destination,
+		// see templateHelper.js found in the esrijs-sdk branch of the jsdoc repo
+		// for implementation details
+    parseEsriAPIString = helper.parseEsriAPIString;
+		 		
 function find(spec) {
     return helper.find(data, spec);
 }
@@ -461,6 +464,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     // add template helpers
     view.find = find;
     view.linkto = linkto;
+		view.parseEsriAPIString = parseEsriAPIString;
     view.resolveAuthorLinks = resolveAuthorLinks;
     view.tutoriallink = tutoriallink;
     view.htmlsafe = htmlsafe;
