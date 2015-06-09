@@ -346,6 +346,19 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     var sourceFiles = {};
     var sourceFilePaths = [];
+    
+    // Remove inherited get/set/watch methods
+    data().each(function(doclet) {
+        if (doclet.inherits && (
+            doclet.inherits.indexOf("module:esri/core/Accessor#get") > -1
+            || doclet.inherits.indexOf("module:esri/core/Accessor#set") > -1
+            || doclet.inherits.indexOf("module:esri/core/Accessor#watch") > -1
+            )
+        ) {
+            data(doclet).remove();
+        }        
+    });
+    
     data().each(function(doclet) {
          doclet.attribs = '';
 
