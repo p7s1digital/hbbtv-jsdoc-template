@@ -75,8 +75,6 @@
         <?js if (doc.description) { ?>
             <div class="description"><?js= doc.description ?></div>
         <?js } ?>
-        <h3 class="subsection-title" id="constructors">Constructors</h3>
-        <?js= self.partial('method.tmpl', doc.module) ?>
     <?js } ?>
     
     <?js if (doc.kind === 'class') { ?>
@@ -101,6 +99,11 @@
     <?js if (doc.examples && doc.examples.length) { ?>
         <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
         <?js= self.partial('examples.tmpl', doc.examples) ?>
+    <?js } ?>
+    
+    <?js if (doc.kind === 'module' && doc.module) { ?>
+        <h3 class="subsection-title" id="constructors">Constructors</h3>
+        <?js= self.partial('method.tmpl', doc.module) ?>
     <?js } ?>
     </div>
     
