@@ -37,7 +37,8 @@
     ?>
     <div style="position:absolute;right:10px;top:10px;">
         <?js
-            if (doc.kind === 'module' && doc.module) { 
+            // TODO: Use a custom tag instead of hard-coded 'has no constructor.' string
+            if (doc.kind === 'module' && doc.module && doc.comment.indexOf('has no constructor.') == -1 ) { 
                 sectionAdded=true;
         ?>
             <a href="#constructors">Constructors</a>
@@ -101,7 +102,8 @@
         <?js= self.partial('examples.tmpl', doc.examples) ?>
     <?js } ?>
     
-    <?js if (doc.kind === 'module' && doc.module) { ?>
+    <?js // TODO: Use a custom tag instead of hard-coded 'has no constructor.' string
+        if (doc.kind === 'module' && doc.module && doc.comment.indexOf('has no constructor.') == -1 ) { ?>
         <h3 class="subsection-title" id="constructors">Constructors</h3>
         <?js= self.partial('method.tmpl', doc.module) ?>
     <?js } ?>
