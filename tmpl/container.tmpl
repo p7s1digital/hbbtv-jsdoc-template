@@ -79,9 +79,6 @@
             <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
             <?js= self.partial('examples.tmpl', doc.examples) ?>
         <?js } ?>
-        <?js if (doc.since) {?>
-            <div class="description tag-since"><b>Since:</b> ArcGIS API for JavaScript <?js= doc.since ?></div>
-        <?js } ?>
         <?js if (doc.see) {?>
             <dt class="tag-see">See also:</dt>
             <dd class="tag-see">
@@ -102,7 +99,9 @@
         <?js } ?>
         
         <?js= self.partial('details.tmpl', doc) ?>
-        
+    <?js } ?>
+    <?js if (doc.since) {?>
+        <div class="description tag-since"><b>Since:</b> ArcGIS API for JavaScript <?js= doc.since ?></div>
     <?js } ?>
     </div>
     

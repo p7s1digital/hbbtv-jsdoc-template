@@ -16,10 +16,6 @@ var self = this;
     <dd class="tag-version"><ul class="dummy"><li><?js= version ?></li></ul></dd>
     <?js } ?>
     
-    <?js if (data.since && data.kind !== "module") {?>
-        <div class="description tag-since"><b>Since:</b> ArcGIS API for JavaScript <?js= since ?></div>
-    <?js } ?>
-
     <?js if (data.deprecated) { ?>
         <dt class="important tag-deprecated">Deprecated</dt><?js
             if (data.deprecated === true) { ?><dd class="yes-def tag-deprecated"><ul class="dummy"><li>Yes</li></ul></dd><?js }
