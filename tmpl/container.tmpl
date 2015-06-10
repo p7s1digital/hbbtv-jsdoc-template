@@ -75,18 +75,6 @@
         <?js if (doc.description) { ?>
             <div class="description"><?js= doc.description ?></div>
         <?js } ?>
-        <?js if (doc.examples && doc.examples.length) { ?>
-            <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
-            <?js= self.partial('examples.tmpl', doc.examples) ?>
-        <?js } ?>
-        <?js if (doc.see) {?>
-            <dt class="tag-see">See also:</dt>
-            <dd class="tag-see">
-                <ul><?js doc.see.forEach(function(s) { ?>
-                    <li><?js= self.linkto(s) ?></li>
-                <?js }); ?></ul>
-            </dd>            
-        <?js } ?>
         <h3 class="subsection-title" id="constructors">Constructors</h3>
         <?js= self.partial('method.tmpl', doc.module) ?>
     <?js } ?>
@@ -97,11 +85,22 @@
         <?js if (doc.description && doc.kind !== 'module') { ?>
             <div class="description"><?js= doc.description ?></div>
         <?js } ?>
-        
         <?js= self.partial('details.tmpl', doc) ?>
     <?js } ?>
     <?js if (doc.since) {?>
         <div class="description tag-since"><b>Since:</b> ArcGIS API for JavaScript <?js= doc.since ?></div>
+    <?js } ?>
+    <?js if (doc.see) {?>
+        <dt class="tag-see">See also:</dt>
+        <dd class="tag-see">
+            <ul><?js doc.see.forEach(function(s) { ?>
+                <li><?js= self.linkto(s) ?></li>
+            <?js }); ?></ul>
+        </dd>            
+    <?js } ?>
+    <?js if (doc.examples && doc.examples.length) { ?>
+        <h3>Example<?js= doc.examples.length > 1? 's':'' ?></h3>
+        <?js= self.partial('examples.tmpl', doc.examples) ?>
     <?js } ?>
     </div>
     
