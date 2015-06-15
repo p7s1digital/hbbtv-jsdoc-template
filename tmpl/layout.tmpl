@@ -42,11 +42,11 @@ var self = this;
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <!--
+    <?js
     // --------------------------------------------------------------------
     // Esri stylesheet stuff
     // --------------------------------------------------------------------
-    -->
+    ?>
     <!-- Link to favicon -->
     <link rel="shortcut icon" href="../assets/img/favicon.ico">
 
@@ -54,11 +54,11 @@ var self = this;
 
     <link rel="stylesheet" href="../assets/css/default.css">
     <link rel="stylesheet" href="../assets/css/api-reference/default.css">
-    <!--
+    <?js
     // --------------------------------------------------------------------
     // Esri stylesheet stuff
     // --------------------------------------------------------------------
-    -->
+    ?>
     <?js if (env.conf.templates) { ?>
     <script>
     var config = <?js= JSON.stringify(env.conf.templates) ?>;
@@ -80,81 +80,115 @@ var self = this;
     <?js } ?>
 </head>
 <body>
-
-<!-- pre esri content -->
-  <div class="drawer drawer-left js-drawer" data-drawer="top-nav">
-    <nav class="drawer-nav">
-      <aside class="side-nav">
-        <h2 class="side-nav-title padding-leader-half padding-trailer-half text-large">ArcGIS for JavaScript</h2>
-        <div class="panel padding-trailer-half padding-leader-half">
-          <label class="trailer-0">
-            <input type='search' placeholder='Search'>
-          </label>
-        </div>
-        <a class="side-nav-link " href="../">Home</a>
-        <a class="side-nav-link" href="../guide">Guide</a>
-        <a class="side-nav-link" href="../api-reference">API Reference</a>
-        <a class="side-nav-link" href="../sample-code">Sample Code</a>
-        <a class="side-nav-link" href="https://geonet.esri.com/community/developers/web-developers/arcgis-api-for-javascript">Forum</a>
-      </aside>
-    </nav>
-  </div>
-
+	<?js /* pre esri content */ ?>
   <div class="wrapper">
+	    <?js
+	     // --------------------------------------------------------------------
+	     // include partial (_developers_nav.html)
+	     // --------------------------------------------------------------------
+			
+	     // --------------------------------------------------------------------
+		   // ┌────────┐
+		   // │ Topnav │
+		   // └────────┘
+		   // ↳ http://esri.github.io/calcite-web/patterns/#top-nav
+		   // ↳ patterns → _top-nav.md
+	     // --------------------------------------------------------------------
+			 ?>
+		  <header class="top-nav">
+		    <div class="grid-container">
+		      <?js
+		      // --------------------------------------------------------------------
+		      // Top nav header
+		      // --------------------------------------------------------------------
+					?>
+		      <div class="tablet-hide">
+		        <div class="site-brand dropdown js-dropdown">
+		          <div class="js-dropdown-toggle">
+		            <span class="user-name">ArcGIS for Developers</span>
+		          </div>
 
+		          <nav class="dropdown-menu dropdown-left">
+		            <a href="http://www.arcgis.com" class="dropdown-link">ArcGIS Online</a>
+		            <a href="http://desktop.arcgis.com/" class="dropdown-link">ArcGIS for Desktop</a>
+		            <a href="http://server.arcgis.com/" class="dropdown-link">ArcGIS for Server</a>
+		            <a href="/" class="current selected dropdown-link">ArcGIS for Developers</a>
+		            <a href="http://solutions.arcgis.com/" class="dropdown-link">ArcGIS Solutions</a>
+		            <a href="https://marketplace.arcgis.com/" class="dropdown-link">ArcGIS Marketplace</a>
+		          </nav>
+		        </div>
+		        <nav class="site-nav">
+		          <ul>
+		           <li><a href="/features/">Features</a></li>
+		           <li><a class="hide-if-logged-in" href="/plans/">Plans</a></li>
+		           <li><a href="/documentation/">Documentation</a></li>
+		           <li><a href="/community/">Community</a></li>
+		         </ul>
+		        </nav>
+		      </div>
+		      <?js
+					// --------------------------------------------------------------------
+		      // ┌─────────┐
+		      // │ Drawers │
+		      // └─────────┘
+		      //  ↳ http://esri.github.io/calcite-web/patterns/#drawers
+		      //  ↳ patterns → _drawers.md
+		      // --------------------------------------------------------------------
+					?>
+		      <div class="js-drawer-toggle tablet-show" data-drawer="top-nav">
+		        <a href="#" class="top-nav-title top-nav-title-tablet">☰ ArcGIS API for JavaScript</a>
+		      </div>
 
-    <!-- Logged Out Pattern-->
-    <header class="top-nav">
-      <div class="grid-container">
-        <div class="column-24">
-          <div class="phone-hide">
-          <div class="site-brand dropdown js-dropdown">
-            <div class="js-dropdown-toggle">
-              <span class="user-name">ArcGIS for Developers</span>
-            </div>
+		      <?js 
+		      // --------------------------------------------------------------------
+		      // Search
+		      // --------------------------------------------------------------------
+		      ?>
+		      <div class="site-search right phone-hide">
+		        <form class="site-search-form" method="GET" action="/search">
+		          <span class="site-search-toggle icon-search"></span>
+		          <input class="left site-search-input" type="search" name="q" placeholder="Search">
 
-            <nav class="dropdown-menu dropdown-left">
-              <a href="http://www.arcgis.com" class="dropdown-link">ArcGIS Online</a>
-              <a href="http://desktop.arcgis.com/" class="dropdown-link">ArcGIS for Desktop</a>
-              <a href="http://server.arcgis.com/" class="dropdown-link">ArcGIS for Server</a>
-              <a href="/" class="current selected dropdown-link">ArcGIS for Developers</a>
-              <a href="http://solutions.arcgis.com/" class="dropdown-link">ArcGIS Solutions</a>
-              <a href="https://marketplace.arcgis.com/" class="dropdown-link">ArcGIS Marketplace</a>
-            </nav>
-          </div>
-          <nav class="site-nav">
-            <ul>
-             <li><a href="/features/">Features</a></li>
-             <li><a class="hide-if-logged-in" href="/plans/">Plans</a></li>
-             <li><a href="/documentation/">Documentation</a></li>
-             <li><a href="/community/">Community</a></li>
-           </ul>
-          </nav>
+		          <button type="submit" class="btn transparent site-search-button">Go</button>
 
-          <div class="site-search right">
-            <form class="site-search-form" method="GET" action="/search">
-              <span class="site-search-toggle icon-search"></span>
-              <input class="left site-search-input" type="search" name="q" placeholder="Search">
+		          <input type="hidden" name="do" value="developers">
+		          <input type="hidden" name="start" value="0">
+		          <input type="hidden" name="lg" value="en">
+		          <input type="hidden" name="product" value="js-api-arcgis">
+		        </form>
+		      </div>
+		      <?js /*
+		      <div class="dropdown js-dropdown right">
 
-              <button type="submit" class="btn transparent site-search-button">Go</button>
+		        <div class="user phone-show js-drawer-toggle" data-drawer="user-nav">
+		          <img src="http://f.cl.ly/items/0S1k2j2q3k3Q0d3g2i3J/a9d.jpg" alt="Sloth Aldrin" class="user-image ">
+		        </div>
 
-              <input type="hidden" name="do" value="developers">
-              <input type="hidden" name="start" value="0">
-              <input type="hidden" name="lg" value="en">
-              <input type="hidden" name="product" value="js-api-arcgis">
-            </form>
-          </div>
-        </div>
-        </div>
-        <div class="phone-show">
-          <a href="#" class="top-nav-title js-drawer-toggle" data-drawer="top-nav">☰ ArcGIS API for JavaScript</a>
-        </div>
+		        <div class="user phone-hide js-dropdown-toggle">
+		          <img src="http://f.cl.ly/items/0S1k2j2q3k3Q0d3g2i3J/a9d.jpg" alt="Sloth Aldrin" class="user-image ">
+		          <span class="user-name">Sloth Aldrin</span>
+		        </div>
 
-      </div>
-    </header>
+		        <nav class="dropdown-menu dropdown-right user-nav">
+		          <a href="#" class="dropdown-link">Account</a>
+		          <a href="#" class="dropdown-link">Profile</a>
+		          <a href="#" class="dropdown-link">Billing</a>
+		          <a href="#" class="dropdown-link">Organizations</a>
+		          <a href="#" class="dropdown-link">Groups</a>
+		          <a href="#" class="dropdown-link">Log Out</a>
+		        </nav>
+		      </div>
+		      */ ?>
+		    </div>
+		  </header>
+    <?js
+    // --------------------------------------------------------------------
+    // Main banner: Home, Guide, API Reference, Sample Code, Forum
+    // --------------------------------------------------------------------
+    ?>
     <header class="sub-nav">
       <div class="grid-container phone-hide">
-        <h1 class="sub-nav-title"><a href="../" class="link-white">ArcGIS API for JavaScript</a></h1>
+        <h1 class="sub-nav-title tablet-hide"><a href="../" class="link-white">ArcGIS API for JavaScript</a></h1>
         <nav class="sub-nav-list leader-0">
           <a class="sub-nav-link" href="../">Home</a>
           <a class="sub-nav-link" href="../guide">Guide</a>
@@ -164,6 +198,26 @@ var self = this;
         </nav>
       </div>
     </header>
+    <?js
+    // --------------------------------------------------------------------
+    // end include partial (_developers_nav.html)
+	  // --------------------------------------------------------------------
+		?>
+		<?js
+     // --------------------------------------------------------------------
+     // ┌─────────┐
+     // │ Drawers │
+     // └─────────┘
+     // ↳ http://esri.github.io/calcite-web/patterns/#drawers
+     // ↳ patterns → _drawers.md
+     // --------------------------------------------------------------------
+    ?>
+    <div class="drawer drawer-left js-drawer" data-drawer="top-nav">
+      <nav class="drawer-nav">
+							<?js= this.partial('navigation-drawer.tmpl', this) ?>
+      </nav>
+    </div>
+    
 
     <!-- content of each page will go here -->
     <div class="grid-container leader-1">
