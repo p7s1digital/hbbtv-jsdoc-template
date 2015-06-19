@@ -1,0 +1,103 @@
+<?js
+var self = this;
+var modifiedNav = self.modifiedNav;
+?>
+<div class="api-ref-search-list side-nav column-6">
+	<ul class="list">
+		<li class="item api-ref-search-no-matches">
+			<div class="panel-no-border">
+				<h4>Search Results</h4>
+				<p>
+					There were no match results from your search criteria.
+				</p>
+			</div>
+		</li>
+    <?js modifiedNav.forEach(function (item) { ?>
+    <li class="item" data-name="<?js= item.longname ?>" data-folderpath="<?js= item.folderpath ?>" data-esriname="<?js= item.classormodulename ?>">
+	            <span class="title">
+	                <?js= self.linkto(item.longname, item.longname, "side-nav-link") ?>
+                <?js if (item.type === 'namespace') { ?>
+                <span class="static">static</span>
+                <?js } ?>
+	            </span>
+	            <ul class="members itemMembers">
+	            <?js
+	            if (item.members.length) {
+	            ?>
+                <span class="subtitle">Properties</span>
+                <?js
+	                item.members.forEach(function (v) {
+	                	var hashMatch = v.longname.match(/#\w*/m);
+	                	var hash = "";
+	                	if(hashMatch){
+	                	  hash = hashMatch[0];
+	                	}
+	            ?>
+                <li data-name="<?js= v.longname ?>" data-esriname="<?js= hash ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+	            <ul class="typedefs itemMembers">
+	            <?js
+	            if (item.typedefs.length) {
+	            ?>
+                <span class="subtitle">Typedefs</span>
+                <?js
+	                item.typedefs.forEach(function (v) {
+	                	var hashMatch = v.longname.match(/#\w*/m);
+										var hash = "";
+										if(hashMatch){
+											hash = hashMatch[0];
+										}
+	            ?>
+                <li data-name="<?js= v.longname ?>" data-esriname="<?js= hash ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+	            <ul class="methods itemMembers">
+	            <?js
+	            if (item.methods.length) {
+	            ?>
+                <span class="subtitle">Methods</span>
+                <?js
+
+	                item.methods.forEach(function (v) {
+	                  var hashMatch = v.longname.match(/#\w*/m);
+										var hash = "";
+										if(hashMatch){
+											hash = hashMatch[0];
+										}
+	            ?>
+                <li data-name="<?js= v.longname ?>" data-esriname="<?js= hash ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+	            <ul class="events itemMembers">
+	            <?js
+	            if (item.events.length) {
+	            ?>
+                <span class="subtitle">Events</span>
+                <?js
+	                item.events.forEach(function (v) {
+	                 var hashMatch = v.longname.match(/#\w*/m);
+										var hash = "";
+										if(hashMatch){
+											hash = hashMatch[0];
+										}
+	            ?>
+                <li data-name="<?js= v.longname ?>" data-esriname="<?js= hash ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <?js
+	                });
+	            }
+	            ?>
+	            </ul>
+	        </li>
+    <?js }); ?>
+	    </ul>
+	  </div>
