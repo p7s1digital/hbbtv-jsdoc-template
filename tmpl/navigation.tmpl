@@ -79,6 +79,26 @@ function sortBy(key, reverse) {
     return 0;
   };
 }
+
+// --------------------------------------------------------------------
+// Modify the navigation array so we can sort the Esri JavaScript
+// library by module path and class name
+// --------------------------------------------------------------------
+var modifiedNav = [];
+this.nav.forEach(function items(item) {
+	// ---------------------------
+	// This section is what figures out the folder path and esri class/module
+	// from parsed jsdoc
+	// ---------------------------
+
+	item["folderpath"] = self.parseEsriAPIString("path", item.longname);
+	item["classormodulename"] = self.parseEsriAPIString("name", item.longname);
+	modifiedNav.push(item);
+
+});
+
+modifiedNav.sort(firstBy(sortBy("folderpath")).thenBy(sortBy("classormodulename")));
+this.modifiedNav = modifiedNav;
 ?>
 <div class="navigation column-6">
     <?js if (env.conf.templates.applicationName && env.conf.templates.applicationName.length > 0) { ?>
@@ -86,24 +106,24 @@ function sortBy(key, reverse) {
     <?js } ?>
 
     <div class="search column-6">
-        <input id="search" type="text" class="form-control input-sm" placeholder="Search API Reference">
+        <input id="search" type="text" class="form-control input-sm api-ref-search" placeholder="Search API Reference">
     </div>
-    <aside class="js-accordion accordion side-nav column-6">
+
+		<?js
+		// --------------------------------------------------------------------
+		// API Reference search list
+		// --------------------------------------------------------------------
+		?>
+		<?js= this.partial('navigation-search-list.tmpl', this) ?>
+
+		<?js
+		// --------------------------------------------------------------------
+		// Table of Contents accordion
+		// --------------------------------------------------------------------
+		?>
+    <aside class="js-accordion accordion api-ref-accordion side-nav column-6">
     <?js
-	var modifiedNav = [];
-	this.nav.forEach(function items(item) {
-		// ---------------------------
-		// This section is what figures out the folder path and esri class/module
-		// from parsed jsdoc
-		// ---------------------------
-		
-		item["folderpath"] = self.parseEsriAPIString("path", item.longname);
-		item["classormodulename"] = self.parseEsriAPIString("name", item.longname);
-		modifiedNav.push(item);
 
-	});
-
-	modifiedNav.sort(firstBy(sortBy("folderpath")).thenBy(sortBy("classormodulename")));
 	var folderNodeDict = {};
 	var lastFolder = "";
     modifiedNav.forEach(function (item) {
