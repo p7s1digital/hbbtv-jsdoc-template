@@ -5,7 +5,7 @@ var self = this;
 <html>
 <head>
     <meta charset="utf-8">
-	<!-- Always force latest IE rendering engine or request Chrome Frame -->
+	  <?js // Always force latest IE rendering engine or request Chrome Frame ?>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="content-language" content="en">
@@ -47,10 +47,14 @@ var self = this;
     // Esri stylesheet stuff
     // --------------------------------------------------------------------
     ?>
-    <!-- Link to favicon -->
+    <?js // Link to favicon ?>
     <link rel="shortcut icon" href="../assets/img/favicon.ico">
 
-    <!-- stylesheets -->
+    <?js
+    // --------------------------------------------------------------------
+    // stylesheets
+    // --------------------------------------------------------------------
+    ?>
 
     <link rel="stylesheet" href="../assets/css/default.css">
     <link rel="stylesheet" href="../assets/css/api-reference/default.css">
@@ -80,7 +84,7 @@ var self = this;
     <?js } ?>
 </head>
 <body>
-	<?js /* pre esri content */ ?>
+	<?js // pre esri content ?>
   <div class="wrapper">
 	    <?js
 	     // --------------------------------------------------------------------
@@ -214,26 +218,26 @@ var self = this;
     ?>
     <div class="drawer drawer-left js-drawer" data-drawer="top-nav">
       <nav class="drawer-nav">
-							<?js= this.partial('navigation-drawer.tmpl', this) ?>
+        <?js= this.partial('navigation-drawer.tmpl', this) ?>
       </nav>
     </div>
     
 
-    <!-- content of each page will go here -->
+    <?js // content of each page will go here ?>
     <div class="grid-container leader-1">
 
-		<!-- pre esri content -->
+		<?js // pre esri content ?>
 		  <div class="api-reference-container">
-			<!-- jaguar stuff -->
+			<?js // jaguar stuff ?>
 			<div id="wrap" class="clearfix">
 			    <div class="main">
 		  			<div class="navigation-container column-6 tablet-hide">
 					    <?js= this.partial('navigation.tmpl', this) ?>
-		  <!--
-	<div class="column-6 js-sticky scroll-show tablet-hide" data-bottom="146">
-      <a href="#" class="btn btn-fill btn-clear">Back to Top</a>
-    </div>
-		  -->
+		  <?js
+	    // <div class="column-6 js-sticky scroll-show tablet-hide" data-bottom="146">
+      // <a href="#" class="btn btn-fill btn-clear">Back to Top</a>
+      // </div>
+		  ?>
 		  			</div>
 					<?js
 					  // --------------------------------------------------------------------
@@ -257,15 +261,15 @@ var self = this;
 			        <?js= content ?>
 			    </div>
 			</div>
-			<!-- jaguar stuff -->
+			<?js // jaguar stuff ?>
 		  </div>
-		<!-- post esri content -->
+		<?js // post esri content ?>
 
     </div>
   </div>
 
 
-  <!-- Footer Pattern -->
+  <?js // Footer Pattern ?>
     <footer class="footer leader-3">
       <div class="grid-container">
           <nav class="column-6">
@@ -315,13 +319,11 @@ var self = this;
       </div>
     </footer>
 
-<!--
+<?js
 // --------------------------------------------------------------------
-//
 // post esri content
-//
 // --------------------------------------------------------------------
--->
+?>
 <script src="../assets/js/libs/calcite-web.js"></script>
 <script src="../assets/js/libs/all.js"></script>
 <script src="../assets/js/libs/api-reference/prettify.js"></script>
