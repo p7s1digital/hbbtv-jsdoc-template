@@ -249,8 +249,6 @@ var self = this;
 					?>
           <div class="page-title column-17 tablet-column-12 pre-1 trailer-1">
 
-
-          <!-- <?js // JSON.stringify(docs, undefined, 2) ?> -->
             <?js if(filename === "index.html") { ?>
               <h1 class="column-17 tablet-column-12" data-filename="<?js= filename ?>"><?js= "API Reference Overview" ?></h1>
             <?js } else if(docs[0].module && docs[0].module.kind === "class") { ?>
@@ -260,7 +258,6 @@ var self = this;
             <?js } else { ?>
               <h1 class="column-9 tablet-column-12" data-filename="<?js= filename ?>"><?js= "Object: " + self.parseEsriAPIString("name", title) ?></h1>
             <?js } ?>
-
 
             <?js
             var doc = docs[0];
