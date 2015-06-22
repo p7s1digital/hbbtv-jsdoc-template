@@ -247,16 +247,65 @@ var self = this;
 						// for implementation details of parseEsriAPIString
 			      // --------------------------------------------------------------------
 					?>
-					<?js if(filename === "index.html") { ?>
-						<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "API Reference Overview" ?></h1>
-					<?js } else if(docs[0].module && docs[0].module.kind === "class") { ?>
-							<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "Class: " + self.parseEsriAPIString("name", title) ?></h1>
-					<?js } else if(docs[0].module && docs[0].module.kind === "function") { ?>
-						<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "Function: " + self.parseEsriAPIString("name", title) ?></h1>
-					<?js } else { ?>
-						<h1 class="page-title column-17 pre-1" data-filename="<?js= filename ?>"><?js= "Object: " + self.parseEsriAPIString("name", title) ?></h1>
-					<?js } ?>
+          <div class="page-title column-17 tablet-column-12 pre-1 trailer-1">
 
+
+          <!-- <?js // JSON.stringify(docs, undefined, 2) ?> -->
+            <?js if(filename === "index.html") { ?>
+              <h1 class="column-17 tablet-column-12" data-filename="<?js= filename ?>"><?js= "API Reference Overview" ?></h1>
+            <?js } else if(docs[0].module && docs[0].module.kind === "class") { ?>
+                <h1 class="column-9 tablet-column-12" data-filename="<?js= filename ?>"><?js= "Class: " + self.parseEsriAPIString("name", title) ?></h1>
+            <?js } else if(docs[0].module && docs[0].module.kind === "function") { ?>
+              <h1 class="column-9 tablet-column-12" data-filename="<?js= filename ?>"><?js= "Function: " + self.parseEsriAPIString("name", title) ?></h1>
+            <?js } else { ?>
+              <h1 class="column-9 tablet-column-12" data-filename="<?js= filename ?>"><?js= "Object: " + self.parseEsriAPIString("name", title) ?></h1>
+            <?js } ?>
+
+
+            <?js
+            var doc = docs[0];
+            var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+            var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+            var typedefs = self.find({kind: 'typedef', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+            var events = self.find({kind: 'event', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
+            sectionAdded=false;
+            ?>
+              <div class="api-ref-quicknav column-8 tablet-column-12">
+                <div class="right tablet-left phone-left">
+                  <?js
+                      // TODO: Use a custom tag instead of hard-coded 'has no constructor.' string
+                      if (doc.kind === 'module' && doc.module && doc.comment.indexOf('has no constructor.') == -1 ) {
+                          sectionAdded=true;
+                  ?>
+                      <a href="#constructors">Constructors</a>
+                  <?js } ?>
+                  <?js
+                      if (methods && methods.length && methods.forEach) {
+                  ?>
+                      <?js if (sectionAdded) {?> | <?js } else { sectionAdded=true;} ?>
+                      <a href="#methods">Methods</a>
+                  <?js } ?>
+                  <?js
+                      if (members && members.length && members.forEach) {
+                  ?>
+                      <?js if (sectionAdded) {?> | <?js } else { sectionAdded=true;} ?>
+                      <a href="#properties">Properties</a>
+                  <?js } ?>
+                  <?js
+                      if (typedefs && typedefs.length && typedefs.forEach) {
+                  ?>
+                      <?js if (sectionAdded) {?> | <?js } else { sectionAdded=true;} ?>
+                      <a href="#typedefinitions">Type definitions</a>
+                  <?js } ?>
+                  <?js
+                      if (events && events.length && events.forEach) {
+                  ?>
+                      <?js if (sectionAdded) {?> | <?js } ?>
+                      <a href="#events">Events</a>
+                  <?js } ?>
+                  </div>
+              </div>
+        </div>
 			        <?js= content ?>
 			    </div>
 			<?js // jaguar stuff ?>
