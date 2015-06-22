@@ -23,12 +23,12 @@
     <?js if (doc.longname) { ?>
         <?js // TODO: only for modules ?>
         <?js // TODO: use custom tag @amdalias for exceptions ?>
-        <code class="prettyprint">require(["<?js= doc.longname ?>"], function(<?js= doc.longname.split("/").pop() ?>) { /* code goes here */ });</code>
+        <code class="column-17 tablet-column-12 prettyprint">require(["<?js= doc.longname ?>"], function(<?js= doc.longname.split("/").pop() ?>) { /* code goes here */ });</code>
     <?js } ?>
     <?js if (doc.classdesc) { ?>
         <div class="class-description"><?js= doc.classdesc ?></div>
     <?js } ?>
-</header>  
+</header>
 
 <article>
     <div class="container-overview">
