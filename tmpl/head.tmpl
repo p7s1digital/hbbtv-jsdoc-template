@@ -1,0 +1,83 @@
+<?js
+var self = this;
+?>
+<head>
+    <meta charset="utf-8">
+	  <?js // Always force latest IE rendering engine or request Chrome Frame ?>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="content-language" content="en">
+    <?js if (env.conf.templates.site_globals.search) { ?>
+    <meta name="product" content="<?js= env.conf.templates.site_globals.search.product ?>">
+    <meta name="subject" content="<?js= env.conf.templates.site_globals.search.subject ?>">
+    <meta name="subject_label" content="<?js= env.conf.templates.site_globals.search.subject_label ?>">
+    <meta name="sub_category" content="<?js= env.conf.templates.site_globals.search.sub_category ?>">
+    <meta name="sub_category_label" content="<?js= env.conf.templates.site_globals.search.sub_category_label ?>">
+    <meta name="content_type_label" content="API Reference">
+    <meta name="search-collection" content="<?js= env.conf.templates.site_globals.search.search_collection ?>">
+    <meta name="content_type" content="API Reference">
+    <meta name="version" content="<?js= env.conf.templates.site_globals.search.jsapi_version ?>">
+    <meta name="search-category" content="help-api,help-api-ref">
+    <meta name="last-modified" content="<?js= new Date() ?>">
+    <?js } ?>
+    <?js if (env.conf.templates.meta) { ?>
+    <?js if (env.conf.templates.meta.description) { ?><meta name="description" content="<?js= env.conf.templates.meta.description ?>" /><?js } ?>
+    <?js if (env.conf.templates.meta.keyword) { ?>
+        <meta name="keywords" content="<?js= env.conf.templates.meta.keyword ?>" />
+        <meta name="keyword" content="<?js= env.conf.templates.meta.keyword ?>" />
+    <?js } ?>
+    <?js } ?>
+    <?js if (env.conf.templates.openGraph) { ?>
+    <meta property="og:title" content="<?js= env.conf.templates.openGraph.title ?>"/>
+    <meta property="og:type" content="<?js= env.conf.templates.openGraph.type ?>"/>
+    <meta property="og:image" content="<?js= env.conf.templates.openGraph.image ?>"/>
+    <?js if (env.conf.templates.openGraph.site_name) { ?><meta property="og:site_name" content="<?js= env.conf.templates.openGraph.site_name ?>"/><?js } ?>
+    <meta property="og:url" content="<?js= env.conf.templates.openGraph.url ?>"/>
+    <?js } ?>
+
+    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || self.parseEsriAPIString("name", self.title)) ?> | API Reference | ArcGIS API for JavaScript</title>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <?js
+    // --------------------------------------------------------------------
+    // Esri stylesheet stuff
+    // --------------------------------------------------------------------
+    ?>
+    <?js // Link to favicon ?>
+    <link rel="shortcut icon" href="../assets/img/favicon.ico">
+
+    <?js
+    // --------------------------------------------------------------------
+    // stylesheets
+    // --------------------------------------------------------------------
+    ?>
+
+    <link rel="stylesheet" href="../assets/css/default.css">
+    <link rel="stylesheet" href="../assets/css/api-reference/default.css">
+    <?js
+    // --------------------------------------------------------------------
+    // Esri stylesheet stuff
+    // --------------------------------------------------------------------
+    ?>
+    <?js if (env.conf.templates) { ?>
+    <script>
+    var config = <?js= JSON.stringify(env.conf.templates) ?>;
+    </script>
+    <?js } ?>
+
+    <?js if (env.conf.templates.googleAnalytics) { ?>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', config.googleAnalytics]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    <?js } ?>
+</head>
