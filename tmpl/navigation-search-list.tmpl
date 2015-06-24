@@ -1,6 +1,7 @@
 <?js
 var self = this;
 var modifiedNav = self.modifiedNav;
+var esriHashRegEx = /#[a-zA-Z:-]*/m;
 ?>
 <div class="api-ref-search-list side-nav column-6">
 	<ul class="list">
@@ -27,7 +28,7 @@ var modifiedNav = self.modifiedNav;
                 <span class="subtitle">Properties</span>
                 <?js
 	                item.members.forEach(function (v) {
-	                	var hashMatch = v.longname.match(/#\w*/m);
+	                	var hashMatch = v.longname.match(esriHashRegEx);
 	                	var hash = "";
 	                	if(hashMatch){
 	                	  hash = hashMatch[0];
@@ -46,7 +47,7 @@ var modifiedNav = self.modifiedNav;
                 <span class="subtitle">Typedefs</span>
                 <?js
 	                item.typedefs.forEach(function (v) {
-	                	var hashMatch = v.longname.match(/#\w*/m);
+	                	var hashMatch = v.longname.match(esriHashRegEx);
 										var hash = "";
 										if(hashMatch){
 											hash = hashMatch[0];
@@ -66,7 +67,7 @@ var modifiedNav = self.modifiedNav;
                 <?js
 
 	                item.methods.forEach(function (v) {
-	                  var hashMatch = v.longname.match(/#\w*/m);
+	                  var hashMatch = v.longname.match(esriHashRegEx);
 										var hash = "";
 										if(hashMatch){
 											hash = hashMatch[0];
@@ -85,7 +86,7 @@ var modifiedNav = self.modifiedNav;
                 <span class="subtitle">Events</span>
                 <?js
 	                item.events.forEach(function (v) {
-	                 var hashMatch = v.longname.match(/#\w*/m);
+	                 var hashMatch = v.longname.match(esriHashRegEx);
 										var hash = "";
 										if(hashMatch){
 											hash = hashMatch[0];
