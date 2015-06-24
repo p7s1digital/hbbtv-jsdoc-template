@@ -1,88 +1,21 @@
 <?js
 var self = this;
+// --------------------------------------------------------------------
+// pass title into head partial
+// --------------------------------------------------------------------
+self.title = title;
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-	  <?js // Always force latest IE rendering engine or request Chrome Frame ?>
-    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <meta name="content-language" content="en">
-    <?js if (env.conf.templates.site_globals.search) { ?>
-    <meta name="product" content="<?js= env.conf.templates.site_globals.search.product ?>">
-    <meta name="subject" content="<?js= env.conf.templates.site_globals.search.subject ?>">
-    <meta name="subject_label" content="<?js= env.conf.templates.site_globals.search.subject_label ?>">
-    <meta name="sub_category" content="<?js= env.conf.templates.site_globals.search.sub_category ?>">
-    <meta name="sub_category_label" content="<?js= env.conf.templates.site_globals.search.sub_category_label ?>">
-    <meta name="content_type_label" content="API Reference">
-    <meta name="search-collection" content="<?js= env.conf.templates.site_globals.search.search_collection ?>">
-    <meta name="content_type" content="API Reference">
-    <meta name="version" content="<?js= env.conf.templates.site_globals.search.jsapi_version ?>">
-    <meta name="search-category" content="help-api,help-api-ref">
-    <meta name="last-modified" content="<?js= new Date() ?>">
-    <?js } ?>	
-    <?js if (env.conf.templates.meta) { ?>
-    <?js if (env.conf.templates.meta.description) { ?><meta name="description" content="<?js= env.conf.templates.meta.description ?>" /><?js } ?>
-    <?js if (env.conf.templates.meta.keyword) { ?>
-        <meta name="keywords" content="<?js= env.conf.templates.meta.keyword ?>" />
-        <meta name="keyword" content="<?js= env.conf.templates.meta.keyword ?>" />
-    <?js } ?>
-    <?js } ?>
-    <?js if (env.conf.templates.openGraph) { ?>
-    <meta property="og:title" content="<?js= env.conf.templates.openGraph.title ?>"/>
-    <meta property="og:type" content="<?js= env.conf.templates.openGraph.type ?>"/>
-    <meta property="og:image" content="<?js= env.conf.templates.openGraph.image ?>"/>
-    <?js if (env.conf.templates.openGraph.site_name) { ?><meta property="og:site_name" content="<?js= env.conf.templates.openGraph.site_name ?>"/><?js } ?>
-    <meta property="og:url" content="<?js= env.conf.templates.openGraph.url ?>"/>
-    <?js } ?>
+<!--[if lt IE 9]>  <html class="ie lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>     <html class="ie ie9"> <![endif]-->
+<!--[if !IE]><!--> <html> <!--<![endif]-->
+<?js
+// --------------------------------------------------------------------
+// include head partial
+// --------------------------------------------------------------------
+?>
+<?js= this.partial('head.tmpl', this) ?>
 
-    <title><?js= ((env.conf.templates.meta && env.conf.templates.meta.title) || self.parseEsriAPIString("name", title)) ?> | API Reference | ArcGIS API for JavaScript</title>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <?js
-    // --------------------------------------------------------------------
-    // Esri stylesheet stuff
-    // --------------------------------------------------------------------
-    ?>
-    <?js // Link to favicon ?>
-    <link rel="shortcut icon" href="../assets/img/favicon.ico">
-
-    <?js
-    // --------------------------------------------------------------------
-    // stylesheets
-    // --------------------------------------------------------------------
-    ?>
-
-    <link rel="stylesheet" href="../assets/css/default.css">
-    <link rel="stylesheet" href="../assets/css/api-reference/default.css">
-    <?js
-    // --------------------------------------------------------------------
-    // Esri stylesheet stuff
-    // --------------------------------------------------------------------
-    ?>
-    <?js if (env.conf.templates) { ?>
-    <script>
-    var config = <?js= JSON.stringify(env.conf.templates) ?>;
-    </script>
-    <?js } ?>
-
-    <?js if (env.conf.templates.googleAnalytics) { ?>
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', config.googleAnalytics]);
-      _gaq.push(['_trackPageview']);
-    
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    <?js } ?>
-</head>
 <body>
 	<?js // pre esri content ?>
   <div class="wrapper">
@@ -90,123 +23,10 @@ var self = this;
 	     // --------------------------------------------------------------------
 	     // include partial (_developers_nav.html)
 	     // --------------------------------------------------------------------
-			
-	     // --------------------------------------------------------------------
-		   // ┌────────┐
-		   // │ Topnav │
-		   // └────────┘
-		   // ↳ http://esri.github.io/calcite-web/patterns/#top-nav
-		   // ↳ patterns → _top-nav.md
-	     // --------------------------------------------------------------------
-			 ?>
-		  <header class="top-nav">
-		    <div class="grid-container">
-		      <?js
-		      // --------------------------------------------------------------------
-		      // Top nav header
-		      // --------------------------------------------------------------------
-					?>
-		      <div class="tablet-hide">
-		        <div class="site-brand dropdown js-dropdown">
-		          <div class="js-dropdown-toggle">
-		            <span class="user-name">ArcGIS for Developers</span>
-		          </div>
+	    ?>
+      <?js= this.partial('developers-nav.tmpl', this) ?>
 
-		          <nav class="dropdown-menu dropdown-left">
-		            <a href="http://www.arcgis.com" class="dropdown-link">ArcGIS Online</a>
-		            <a href="http://desktop.arcgis.com/" class="dropdown-link">ArcGIS for Desktop</a>
-		            <a href="http://server.arcgis.com/" class="dropdown-link">ArcGIS for Server</a>
-		            <a href="/" class="current selected dropdown-link">ArcGIS for Developers</a>
-		            <a href="http://solutions.arcgis.com/" class="dropdown-link">ArcGIS Solutions</a>
-		            <a href="https://marketplace.arcgis.com/" class="dropdown-link">ArcGIS Marketplace</a>
-		          </nav>
-		        </div>
-		        <nav class="site-nav">
-		          <ul>
-		           <li><a href="/features/">Features</a></li>
-		           <li><a class="hide-if-logged-in" href="/plans/">Plans</a></li>
-		           <li><a href="/documentation/">Documentation</a></li>
-		           <li><a href="/community/">Community</a></li>
-		         </ul>
-		        </nav>
-		      </div>
-		      <?js
-					// --------------------------------------------------------------------
-		      // ┌─────────┐
-		      // │ Drawers │
-		      // └─────────┘
-		      //  ↳ http://esri.github.io/calcite-web/patterns/#drawers
-		      //  ↳ patterns → _drawers.md
-		      // --------------------------------------------------------------------
-					?>
-		      <div class="tablet-show">
-		        <a href="#" class="js-drawer-toggle top-nav-title top-nav-title-tablet" data-drawer="top-nav">☰ ArcGIS API for JavaScript Beta</a>
-		      </div>
 
-		      <?js 
-		      // --------------------------------------------------------------------
-		      // Search
-		      // --------------------------------------------------------------------
-		      ?>
-		      <div class="site-search right phone-hide">
-		        <form class="site-search-form" method="GET" action="/search">
-		          <span class="site-search-toggle icon-search"></span>
-		          <input class="left site-search-input" type="search" name="q" placeholder="Search">
-
-		          <button type="submit" class="btn transparent site-search-button">Go</button>
-
-		          <input type="hidden" name="do" value="developers">
-		          <input type="hidden" name="start" value="0">
-		          <input type="hidden" name="lg" value="en">
-		          <input type="hidden" name="product" value="js-api-arcgis">
-		        </form>
-		      </div>
-		      <?js /*
-		      <div class="dropdown js-dropdown right">
-
-		        <div class="user phone-show js-drawer-toggle" data-drawer="user-nav">
-		          <img src="http://f.cl.ly/items/0S1k2j2q3k3Q0d3g2i3J/a9d.jpg" alt="Sloth Aldrin" class="user-image ">
-		        </div>
-
-		        <div class="user phone-hide js-dropdown-toggle">
-		          <img src="http://f.cl.ly/items/0S1k2j2q3k3Q0d3g2i3J/a9d.jpg" alt="Sloth Aldrin" class="user-image ">
-		          <span class="user-name">Sloth Aldrin</span>
-		        </div>
-
-		        <nav class="dropdown-menu dropdown-right user-nav">
-		          <a href="#" class="dropdown-link">Account</a>
-		          <a href="#" class="dropdown-link">Profile</a>
-		          <a href="#" class="dropdown-link">Billing</a>
-		          <a href="#" class="dropdown-link">Organizations</a>
-		          <a href="#" class="dropdown-link">Groups</a>
-		          <a href="#" class="dropdown-link">Log Out</a>
-		        </nav>
-		      </div>
-		      */ ?>
-		    </div>
-		  </header>
-    <?js
-    // --------------------------------------------------------------------
-    // Main banner: Home, Guide, API Reference, Sample Code, Forum
-    // --------------------------------------------------------------------
-    ?>
-    <header class="sub-nav">
-      <div class="grid-container phone-hide">
-        <h1 class="sub-nav-title tablet-hide"><a href="../" class="link-white">ArcGIS API for JavaScript</a></h1>
-        <nav class="sub-nav-list leader-0">
-          <a class="sub-nav-link" href="../">Home</a>
-          <a class="sub-nav-link" href="../guide">Guide</a>
-          <a class="sub-nav-link is-active" href="../api-reference">API Reference</a>
-          <a class="sub-nav-link" href="../sample-code">Sample Code</a>
-          <a class="sub-nav-link" href="../forum">Forum</a>
-        </nav>
-      </div>
-    </header>
-    <?js
-    // --------------------------------------------------------------------
-    // end include partial (_developers_nav.html)
-	  // --------------------------------------------------------------------
-		?>
 		<?js
      // --------------------------------------------------------------------
      // ┌─────────┐
@@ -216,12 +36,7 @@ var self = this;
      // ↳ patterns → _drawers.md
      // --------------------------------------------------------------------
     ?>
-    <div class="drawer drawer-left js-drawer" data-drawer="top-nav">
-      <nav class="drawer-nav">
-        <?js= this.partial('navigation-drawer.tmpl', this) ?>
-      </nav>
-    </div>
-    
+    <?js= this.partial('navigation-drawer.tmpl', this) ?>
 
     <?js // content of each page will go here ?>
     <div class="grid-container leader-1">
