@@ -11,7 +11,7 @@ var self = this;
 						<?js// --------------------------------------------------------------------
 					      // Use function to strip Esri module path found in templateHelper.js
 					      // --------------------------------------------------------------------?>
-            <?js= data.attribs + (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? self.parseEsriAPIString("name", longname) : name) + (kind !== 'event' ? data.signature : '') ?>
+            <a class="icon-anchor" href="#<?js= id ?>" aria-hidden="true"><span class="icon icon-ui-link"></span></a><?js= data.attribs + (kind === 'class' ? 'new ' : '') + (data.scope === 'static' ? self.parseEsriAPIString("name", longname) : name) + (kind !== 'event' ? data.signature : '') ?>
         </h4>
     </div>
 
