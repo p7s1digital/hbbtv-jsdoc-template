@@ -11,10 +11,13 @@ if (data.type && data.type.names) {
 ?>
 <dt>
     <div class="nameContainer">
-			<?js// --------------------------------------------------------------------
-		      // Use function to strip Esri module path found in templateHelper.js
-		      // --------------------------------------------------------------------?>
-        <h4 class="name" id="<?js= id ?>"><a class="icon-anchor" href="#<?js= id ?>" aria-hidden="true"><span class="icon icon-ui-link"></span></a><?js= data.attribs + (data.scope === 'static' ? self.parseEsriAPIString("name", longname) : name)  + typeSignature ?></h4>
+    <a class="icon-anchor" href="#<?js= id ?>" aria-hidden="true"><span class="icon icon-ui-link"></span></a>
+			<?js
+			// --------------------------------------------------------------------
+      // Use function to strip Esri module path found in templateHelper.js
+      // --------------------------------------------------------------------
+      ?>
+    <h4 class="name" id="<?js= id ?>"><?js= data.attribs + (data.scope === 'static' ? self.parseEsriAPIString("name", longname) : name)  + typeSignature ?></h4>
     </div>
     
     <?js if (data.summary) { ?>
