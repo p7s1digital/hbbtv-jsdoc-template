@@ -1,0 +1,20 @@
+<?js
+var data = obj;
+var self = this;
+
+var title = self.doc.id;
+var pageTitle = self.doc.id + " %7C API Reference %7C ArcGIS API for JavaScript";
+var page = self.doc.name;
+var jsapi_version = self.jsapi_version;
+var url = "";
+if (page) {
+  url = "api-reference%2F" + page.replace(/\//g, "-") + ".html";
+}
+if (self.doc.module) {
+  page = self.doc.module.name;
+  pageTitle = page + " %7C API Reference %7C ArcGIS API for JavaScript";
+}
+?>
+<div class="footnote feedback right">
+  <a class="icon-ui-contact" href="mailto:js_feedback@esri.com?subject=Feedback on <?js= title ?>&body=Hello,%0A%0AI was reading the ArcGIS API for JavaScript version <?js= jsapi_version ?> documentation and have a question.%0A%0ADocumentation details:%0APage title: <?js= pageTitle ?>%0A Page: <?js= page ?>%0APage URL: <?js= url ?>%0A%0A">Feedback on this topic?</a>
+</div>
