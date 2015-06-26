@@ -76,6 +76,8 @@ self.title = title;
 
             <?js
             var doc = docs[0];
+            this.doc = doc;
+            this.jsapi_version = env.conf.templates.site_globals.search.jsapi_version;
             var methods = self.find({kind: 'function', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             var members = self.find({kind: 'member', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
             var typedefs = self.find({kind: 'typedef', memberof: title === 'Global' ? {isUndefined: true} : doc.longname});
@@ -126,6 +128,8 @@ self.title = title;
               // --------------------------------------------------------------------
               ?>
 			        <?js= content ?>
+			        <?js // feedback ?>
+              <?js= this.partial('feedback.tmpl', this) ?>
 			    </div>
 			<?js // jaguar stuff ?>
 		  </div>
