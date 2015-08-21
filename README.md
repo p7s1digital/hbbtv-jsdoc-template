@@ -19,7 +19,7 @@ Usage
       ..other grunt tasks here..
       jsdoc : {
         dist : {
-          src: ['src/*.js'],
+          src: ['src/*.js', 'README.md'],
           options: {
             destination: 'docs',
             configure : "conf.json",
