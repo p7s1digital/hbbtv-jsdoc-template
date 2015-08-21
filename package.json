@@ -1,7 +1,7 @@
 {
-  "name": "jaguarjs-jsdoc",
-  "version": "0.0.1",
-  "description": "Jaguar.js template for JSDoc 3",
+  "name": "jaguarjs-jsdoc-patched",
+  "version": "0.0.2",
+  "description": "A patched version of JaguarJS-JSDoc, for JSDoc 3",
   "main": "Gruntfile.js",
   "dependencies": {
     "taffydb": "^2.7.2",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/davidshimjs/jaguarjs-jsdoc.git"
+    "url": "https://github.com/BlueRaja/jaguarjs-jsdoc.git"
   },
   "keywords": [
     "jsdoc",
@@ -31,10 +31,10 @@
     "jaguar.js",
     "template"
   ],
-  "author": "davidshimjs",
+  "author": "davidshimjs + contributors",
   "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/davidshimjs/jaguarjs-jsdoc/issues"
+    "url": "https://github.com/BlueRaja/jaguarjs-jsdoc"
   }
 }
