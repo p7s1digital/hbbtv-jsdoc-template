@@ -7,35 +7,30 @@ This patched version consists of every PR and every other patch I could find, al
 Usage
 ---
 1. Install from npm
-```
-$ npm install jaguarjs-jsdoc-patched --save-dev
-```
+  ```
+  $ npm install jaguarjs-jsdoc-patched --save-dev
+  ```
 
 2. Copy the `conf.json` file to your repo.  Edit as necessary.
 
 3. Assuming you're using [grunt-jsdoc](https://github.com/krampstudio/grunt-jsdoc), set the template to `./node_modules/jaguarjs-jsdoc-patched`
-``` javascript
-  grunt.initConfig({
-    jsdoc : {
-      dist : {
-        src: ['src/*.js'],
-        options: {
-          destination: 'docs',
-          configure : "conf.json",
-          template: './node_modules/jaguarjs-jsdoc-patched'
+  ``` javascript
+    grunt.initConfig({
+      jsdoc : {
+        dist : {
+          src: ['src/*.js'],
+          options: {
+            destination: 'docs',
+            configure : "conf.json",
+            template: './node_modules/jaguarjs-jsdoc-patched'
+          }
         }
       }
-    }
-  });
-```
+    });
+  ```
 Other task runners should work similarly.
 
-3. If you already have jsdoc system, you can use this project as jsdoc template.
-```
-$ jsdoc -t `project folder` -c `configuration file` `source files` `README.md file`
-```
-
-4. Again assuming you're using grunt-jsdoc, simply run `grunt jsdoc`!
+3. Again assuming you're using grunt-jsdoc, simply run `grunt jsdoc`!
 
 
 License
