@@ -16,6 +16,7 @@ Usage
 3. Assuming you're using [grunt-jsdoc](https://github.com/krampstudio/grunt-jsdoc), set the template to `./node_modules/jaguarjs-jsdoc-patched`
   ``` javascript
     grunt.initConfig({
+      ..other grunt tasks here..
       jsdoc : {
         dist : {
           src: ['src/*.js'],
