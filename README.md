@@ -2,7 +2,7 @@ A patched version of [JaguarJS-JSDoc](https://github.com/davidshimjs/jaguarjs-js
 ---
 JaguarJS-JSDoc is by far the most beautiful JSDoc theme in existence, but unfortuantely it's no longer maintained.
 
-This patched version is a hideous amalgam of every PR and every other patch I could find, all mashed together in the name of progress.  It seems to work.
+This patched version consists of every PR and every other patch I could find, all mashed together into one giant hideous amalgalm, all in the name of progress.  It seems to work.
 
 Usage
 ---
