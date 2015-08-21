@@ -11,7 +11,7 @@ Usage
   $ npm install jaguarjs-jsdoc-patched --save-dev
   ```
 
-2. Copy the `conf.json` file to your repo.  Edit as necessary.
+2. Copy the `conf.json` file to the root directory of your repo.  Edit as necessary.
 
 3. Assuming you're using [grunt-jsdoc](https://github.com/krampstudio/grunt-jsdoc), set the template to `./node_modules/jaguarjs-jsdoc-patched`
   ``` javascript
