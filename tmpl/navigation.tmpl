@@ -1,5 +1,8 @@
 <?js
 var self = this;
+function addZeroWhiteSpace(text) {
+    return text && text.replace(/([.:~\/])/g, '&#8203;$1');
+}
 ?>
 <div class="navigation">
     <h3 class="applicationName"><a href="index.html"><?js= env.conf.templates.applicationName ?></a></h3>
@@ -13,7 +16,7 @@ var self = this;
     ?>
         <li class="item" data-name="<?js= item.longname ?>">
             <span class="title">
-                <?js= self.linkto(item.longname, item.longname) ?>
+                <?js= self.linkto(item.longname, addZeroWhiteSpace(item.longname)) ?>
                 <?js if (item.type === 'namespace') { ?>
                 <span class="static">static</span>
                 <?js } ?>
@@ -26,7 +29,7 @@ var self = this;
             <?js
                 item.members.forEach(function (v) {
             ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, addZeroWhiteSpace(v.name)) ?></li>
             <?js
                 });
             }
@@ -40,7 +43,7 @@ var self = this;
             <?js
                 item.typedefs.forEach(function (v) {
             ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, addZeroWhiteSpace(v.name)) ?></li>
             <?js
                 });
             }
@@ -55,7 +58,7 @@ var self = this;
 
                 item.methods.forEach(function (v) {
             ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, addZeroWhiteSpace(v.name)) ?></li>
             <?js
                 });
             }
@@ -69,7 +72,7 @@ var self = this;
             <?js
                 item.events.forEach(function (v) {
             ?>
-                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, v.name) ?></li>
+                <li data-name="<?js= v.longname ?>"><?js= self.linkto(v.longname, addZeroWhiteSpace(v.name)) ?></li>
             <?js
                 });
             }
