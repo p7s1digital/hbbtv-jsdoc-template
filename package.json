@@ -1,6 +1,6 @@
 {
   "name": "hbbtv-jsdoc-template",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A patched version of JaguarJS-JSDoc, for JSDoc 3",
   "main": "Gruntfile.js",
   "dependencies": {
